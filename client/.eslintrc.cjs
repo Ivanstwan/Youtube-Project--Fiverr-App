@@ -13,6 +13,8 @@ module.exports = {
   rules: {
     // suppress errors for missing 'import React' in files
     'react/react-in-jsx-scope': 'off',
+    // unused variable, will only warn (yellow), not (red)
+    'no-unused-vars': 'warn',
   },
   settings: {
     react: {
