@@ -18,6 +18,12 @@ const Navbar = () => {
           <button className="button">Join</button>
         </div>
       </div>
+      <div className="menu">
+        <div className="menu-list">
+          <span>menu 1</span>
+          <span>menu 2</span>
+        </div>
+      </div>
     </div>
   );
 };
