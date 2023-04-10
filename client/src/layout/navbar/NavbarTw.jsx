@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.scss';
 
 const NavbarTw = () => {
@@ -32,14 +33,16 @@ const NavbarTw = () => {
       >
         <div className="flex w-full max-w-7xl justify-between px-5 py-5">
           <div className="text-3xl font-semibold">
-            <span>fiverr</span>
-            <span className="text-fiverr-green">.</span>
+            <Link to="/">
+              <span>fiverr</span>
+              <span className="text-fiverr-green">.</span>
+            </Link>
           </div>
           <div className="flex items-center gap-6 font-medium">
-            <span>Fiverr Business</span>
-            <span>Explore</span>
-            <span>English</span>
-            <span>Sign In</span>
+            <Link to="/">Fiverr Business</Link>
+            <Link to="/">Explore</Link>
+            <Link to="/">English</Link>
+            <Link to="/">Sign In</Link>
             {!currentUser?.isSeller ? <span>Become a seller</span> : null}
             {!currentUser ? (
               <button className="rounded border border-white px-5 py-2 transition duration-200 ease-in-out hover:border-fiverr-green hover:bg-fiverr-green hover:text-white">
@@ -48,7 +51,7 @@ const NavbarTw = () => {
             ) : null}
             {currentUser ? (
               <div
-                className="relative flex items-center gap-3"
+                className="relative flex cursor-pointer items-center gap-3"
                 onClick={() => {
                   setOpen(!open);
                 }}
@@ -63,13 +66,13 @@ const NavbarTw = () => {
                   <div className="absolute right-0 top-11 flex w-56 flex-col gap-3 rounded-lg border-2 border-slate-300 bg-white p-5 text-slate-600">
                     {currentUser?.isSeller ? (
                       <>
-                        <span>Gigs</span>
-                        <span>Add New Gig</span>
+                        <Link to="/mygigs">Gigs</Link>
+                        <Link to="/add">Add New Gig</Link>
                       </>
                     ) : null}
-                    <span>Orders</span>
-                    <span>Messages</span>
-                    <span>Logout</span>
+                    <Link to="/orders">Orders</Link>
+                    <Link to="/messages">Messages</Link>
+                    <Link to="/">Logout</Link>
                   </div>
                 ) : null}
               </div>
