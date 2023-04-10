@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.scss';
 
 const NavbarTw = () => {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,7 +30,9 @@ const NavbarTw = () => {
     <div className={`sticky top-0 flex flex-col items-center justify-center`}>
       <div
         className={`flex w-full justify-center transition duration-200 ${
-          active ? 'bg-white text-black' : 'bg-fiverr-dark-green text-white'
+          active || pathname !== '/'
+            ? 'bg-white text-black'
+            : 'bg-fiverr-dark-green text-white'
         }`}
       >
         <div className="flex w-full max-w-7xl justify-between px-5 py-5">
@@ -82,7 +86,7 @@ const NavbarTw = () => {
       </div>
       <div
         className={`rotate-x-90 flex w-full justify-center border-t-[1px] border-slate-400 transition-all duration-500 ${
-          active
+          active || pathname !== '/'
             ? 'rotate-x-0 h-auto bg-white text-black'
             : 'rotate-x-90 h-0 text-white'
         }`}
