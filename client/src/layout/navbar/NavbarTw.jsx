@@ -3,6 +3,7 @@ import './Navbar.scss';
 
 const NavbarTw = () => {
   const [active, setActive] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,10 +40,40 @@ const NavbarTw = () => {
             <span>Explore</span>
             <span>English</span>
             <span>Sign In</span>
-            <span>Become a seller</span>
-            <button className="rounded border border-white px-5 py-2 transition duration-200 ease-in-out hover:border-fiverr-green hover:bg-fiverr-green hover:text-white">
-              Join
-            </button>
+            {!currentUser?.isSeller ? <span>Become a seller</span> : null}
+            {!currentUser ? (
+              <button className="rounded border border-white px-5 py-2 transition duration-200 ease-in-out hover:border-fiverr-green hover:bg-fiverr-green hover:text-white">
+                Join
+              </button>
+            ) : null}
+            {currentUser ? (
+              <div
+                className="relative flex items-center gap-3"
+                onClick={() => {
+                  setOpen(!open);
+                }}
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                  alt=""
+                  className="h-8 w-8 rounded-full object-cover"
+                />
+                <span>{currentUser?.username}</span>
+                {open ? (
+                  <div className="absolute right-0 top-11 flex w-56 flex-col gap-3 rounded-lg border-2 border-slate-300 bg-white p-5 text-slate-600">
+                    {currentUser?.isSeller ? (
+                      <>
+                        <span>Gigs</span>
+                        <span>Add New Gig</span>
+                      </>
+                    ) : null}
+                    <span>Orders</span>
+                    <span>Messages</span>
+                    <span>Logout</span>
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
