@@ -4,6 +4,7 @@ import './Navbar.scss';
 
 const NavbarTw = () => {
   const [active, setActive] = useState(false);
+  const [activeMenu, setActiveMenu] = useState(false);
   const [open, setOpen] = useState(false);
 
   const { pathname } = useLocation();
@@ -12,11 +13,16 @@ const NavbarTw = () => {
     const handleScroll = () => {
       window.scrollY > 0 ? setActive(true) : setActive(false);
     };
+    const handleScrollMenu = () => {
+      window.scrollY > 80 ? setActiveMenu(true) : setActiveMenu(false);
+    };
 
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScrollMenu);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScrollMenu);
     };
   }, []);
 
@@ -85,10 +91,10 @@ const NavbarTw = () => {
         </div>
       </div>
       <div
-        className={`rotate-x-90 flex w-full justify-center border-t-[1px] border-slate-400 transition-all duration-500 ${
-          active || pathname !== '/'
-            ? 'rotate-x-0 h-auto bg-white text-black'
-            : 'rotate-x-90 h-0 text-white'
+        className={`rotate-x-90 flex w-full justify-center border-t-[0px] border-slate-400 transition-all duration-500 ${
+          activeMenu || pathname !== '/'
+            ? 'rotate-x-0 h-auto border-t-[1px] bg-white text-black'
+            : 'rotate-x-90 h-0'
         }`}
       >
         <div className="flex w-full max-w-7xl justify-between px-5 py-5">
