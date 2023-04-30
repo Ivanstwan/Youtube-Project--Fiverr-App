@@ -91,9 +91,9 @@ const NavbarTw = () => {
         </div>
       </div>
       <div
-        className={`rotate-x-90 flex w-full justify-center border-t-[0px] border-slate-400 transition-all duration-500 ${
+        className={`rotate-x-90 flex w-full justify-center border-t-[0px] border-slate-400 transition-all  ${
           activeMenu || pathname !== '/'
-            ? 'rotate-x-0 h-auto border-t-[1px] bg-white text-black'
+            ? 'rotate-x-0 h-auto border-t-[1px] bg-white text-black duration-500'
             : 'rotate-x-90 h-0'
         }`}
       >
