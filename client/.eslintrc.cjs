@@ -15,6 +15,8 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     // unused variable, will only warn (yellow), not (red)
     'no-unused-vars': 'warn',
+    // because eslint show "props.children is missing in props validation", so turned off
+    'react/prop-types': ['off'],
   },
   settings: {
     react: {
