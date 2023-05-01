@@ -25,3 +25,15 @@ Material Icon Theme (icon folder)
 Tailwind CSS IntelliSense (suggest tailwind css?)
 
 https://dbdiagram.io/d/617424036239e146477f0e08 - db diagram
+
+CLIENT SIDE
+
+1. install font awesome icon
+   npm i --save @fortawesome/fontawesome-svg-core
+
+   # Free icons styles
+
+   npm i --save @fortawesome/free-solid-svg-icons
+   npm i --save @fortawesome/free-regular-svg-icons
+
+   npm i --save @fortawesome/react-fontawesome@latest
