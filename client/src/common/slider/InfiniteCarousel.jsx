@@ -12,12 +12,26 @@ const InfiniteCarousel = (props) => {
   const [carouselWidth, setCarouselWidth] = useState(null);
   const targetRef = useRef(null);
 
+  // handle resizing screen, and for the timeoutId for prevent transition (became jittery) happen when resizing
   useEffect(() => {
+    let timeoutId;
+
     const updateWidth = () => {
       if (targetRef.current) {
         setCarouselWidth(targetRef.current.offsetWidth);
-        console.log(carouselWidth, ' [div width] ');
       }
+      const carouselItems = document.querySelectorAll('.carousel-item');
+      carouselItems.forEach((item) => {
+        item.classList.add('stop-transition');
+      });
+
+      clearTimeout(timeoutId);
+
+      timeoutId = setTimeout(() => {
+        carouselItems.forEach((item) => {
+          item.classList.remove('stop-transition');
+        });
+      }, 500);
     };
 
     updateWidth();
@@ -27,31 +41,42 @@ const InfiniteCarousel = (props) => {
 
     return () => {
       window.removeEventListener('resize', updateWidth);
+      clearTimeout(timeoutId);
     };
   }, [targetRef.current]);
 
-  const clickNext = () => {
-    if (currentIndex < numOfChildren - 1) {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
+  const slidesPerRow = 5;
 
   const clickPrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
+    console.log([currentIndex, slidesPerRow, numOfChildren], '[prev]');
+    if (currentIndex === 0) {
+      setCurrentIndex(numOfChildren - slidesPerRow);
+    } else if (currentIndex >= 0) {
+      currentIndex - slidesPerRow < 0
+        ? setCurrentIndex(0)
+        : setCurrentIndex(currentIndex - slidesPerRow);
     }
   };
 
-  console.log(targetRef, '[targetref]');
-  console.log(data, '[data]');
-  console.log(children, '[children]');
+  const clickNext = () => {
+    console.log([currentIndex, slidesPerRow, numOfChildren], '[next]');
+    if (currentIndex < numOfChildren) {
+      currentIndex + slidesPerRow >= numOfChildren
+        ? setCurrentIndex(0)
+        : setCurrentIndex(currentIndex + slidesPerRow);
+    }
+  };
 
-  const slidesPerRow = 1;
+  // console.log(targetRef, '[targetref]');
+  // console.log(data, '[data]');
+  // console.log(children, '[children]');
 
   return (
     <div className="carousel" ref={targetRef}>
       <button className="carousel-prev" onClick={clickPrev}>
-        <FontAwesomeIcon icon={faArrowLeft} />
+        <div className="flex h-12 w-12 justify-center rounded-full bg-white align-middle shadow-inner">
+          <FontAwesomeIcon icon={faArrowLeft} className="m-auto block" />
+        </div>
       </button>
       <div className="carousel-track">
         {React.Children.map(children, (child, index) => {
@@ -63,9 +88,9 @@ const InfiniteCarousel = (props) => {
               className="carousel-item"
               style={{
                 width: `${100 / slidesPerRow}%`,
-                // left: `${index * 200}px`,
                 transform: `translateX(${
-                  (index * carouselWidth - currentIndex * carouselWidth) / 4
+                  (index * carouselWidth - currentIndex * carouselWidth) /
+                  slidesPerRow
                 }px)`,
               }}
             >
@@ -75,7 +100,9 @@ const InfiniteCarousel = (props) => {
         })}
       </div>
       <button className="carousel-next" onClick={clickNext}>
-        <FontAwesomeIcon icon={faArrowRight} />
+        <div className="flex h-12 w-12 justify-center rounded-full bg-white align-middle shadow-inner">
+          <FontAwesomeIcon icon={faArrowRight} className="m-auto block" />
+        </div>
       </button>
     </div>
   );
