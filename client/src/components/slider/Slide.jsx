@@ -55,7 +55,7 @@ const Slide = (cards) => {
     },
   ];
   return (
-    <div className="flex w-full justify-center">
+    <div className="mb-16 flex w-full justify-center">
       <div className="flex w-full max-w-7xl">
         <InfiniteCarousel>
           {data.map((card) => {

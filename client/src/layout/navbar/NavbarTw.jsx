@@ -33,7 +33,9 @@ const NavbarTw = () => {
   };
 
   return (
-    <div className={`sticky top-0 flex flex-col items-center justify-center`}>
+    <div
+      className={`sticky top-0 z-10 flex flex-col items-center justify-center`}
+    >
       <div
         className={`flex w-full justify-center transition duration-200 ${
           active || pathname !== '/'

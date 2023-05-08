@@ -3,7 +3,7 @@ import './Featured.scss';
 
 const Featured = () => {
   return (
-    <div className="flex h-[600px] w-full justify-center bg-fiverr-dark-green">
+    <div className="mb-16 flex h-[600px] w-full justify-center bg-fiverr-dark-green">
       <div className="flex w-full max-w-7xl px-5">
         <div className="left flex flex-1 flex-col justify-center gap-8">
           <h2 className="text-[2.15rem] font-bold text-white">
