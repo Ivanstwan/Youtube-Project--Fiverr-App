@@ -1,10 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 function Featured2() {
   return (
-    <div className="mb-16 flex w-full justify-center bg-teal-50">
+    <div className="flex w-full justify-center bg-teal-50">
       <div className="flex w-full max-w-7xl py-24">
         <div className="grid w-full grid-cols-9 gap-4">
           <div className="col-span-4 pl-4 pr-12">
@@ -15,7 +15,7 @@ function Featured2() {
               <li className="pb-4 text-slate-700">
                 <h6 className="flex items-center pb-2 font-semibold">
                   <span className="pr-2">
-                    <FontAwesomeIcon icon={faCircleCheck} className="text-xl" />
+                    <FontAwesomeIcon icon={faCheck} className="text-xl" />
                   </span>
                   Stick to your budget
                 </h6>
@@ -27,7 +27,7 @@ function Featured2() {
               <li className="pb-4 text-slate-700">
                 <h6 className="flex items-center pb-2 font-semibold">
                   <span className="pr-2">
-                    <FontAwesomeIcon icon={faCircleCheck} className="text-xl" />
+                    <FontAwesomeIcon icon={faCheck} className="text-xl" />
                   </span>
                   Get quality work done quickly
                 </h6>
@@ -39,7 +39,7 @@ function Featured2() {
               <li className="pb-4 text-slate-700">
                 <h6 className="flex items-center pb-2 font-semibold">
                   <span className="pr-2">
-                    <FontAwesomeIcon icon={faCircleCheck} className="text-xl" />
+                    <FontAwesomeIcon icon={faCheck} className="text-xl" />
                   </span>
                   Pay when you're happy
                 </h6>
@@ -50,7 +50,17 @@ function Featured2() {
               </li>
             </ul>
           </div>
-          <div className="col-span-5">2</div>
+          <div className="col-span-5">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/KI5CnJ9u5ok"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>
